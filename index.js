@@ -4,7 +4,8 @@
  * @param req: webpack context representing the require statement
  * @return Object
  */
-module.exports = function(req, options = {}){
+module.exports = function(req, options){
+  options = options || {}
   options.exclude = options.exclude || [];
 
   var directoryObj = options.objectToModify || {};
