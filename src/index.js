@@ -10,6 +10,10 @@ module.exports = function(req, options){
 
   var directoryObj = options.objectToModify || {};
 
+  if (req === void 0 || req.keys === void 0) {
+    throw new Error('webpack-requireDir requires a webpack context.');
+  }
+
   req.keys().forEach(function(key){
     var module = req(key);
 
@@ -29,20 +33,20 @@ module.exports = function(req, options){
     // remove the relative path field segment
     segments.splice(0, 1);
 
-    segments.reduce(function(directoryObj, segment){
+    segments.reduce(function(directoryObj, segment) {
       var segmentParts = segment.split('.');
       var name = segmentParts[0];
 
-      // if there's only one segment, like ['dir1'] it's a directory, so make
-      // an entry in the object to represent it
-      if (segmentParts.length === 1){
+      if (segmentParts.length === 1) {
+        // if there's only one segment, like ['dir1'] it's a directory, so make
+        // an entry in the object to represent it
         directoryObj[name] = directoryObj[name] || {};
-        return directoryObj[name];
+      } else {
+        // if there's more than on segment, like ['file', 'js'] then it's a file, so
+        // make an entry in the object and save the module definition to that location
+        directoryObj[name] = module;
       }
 
-      // if there's more than on segment, like ['file', 'js'] then it's a file, so
-      // make an entry in the object and save the module definition to that location
-      directoryObj[name] = module;
       return directoryObj;
     }, directoryObj);
   });
