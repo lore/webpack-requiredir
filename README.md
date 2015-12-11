@@ -1,11 +1,11 @@
-webpack-requireDir
+webpack-requiredir
 ===
 Recursively require a modules based on a webpack require context.
 
 ##Usage:
 
 ```
-const requireDir = require('webpack-requireDir');
+const requireDir = require('webpack-requiredir');
 const result = requireDir(require.context('./src/actions', true, /\.js$/))
 
 # result will be a hash containing modules by name.
