@@ -2,10 +2,11 @@
  * Use: requireDir(require.context('./actions', true, /\.js$/);
  *
  * @param req: webpack context representing the require statement
+ * @param options: options
  * @return Object
  */
 module.exports = (req, options) => {
-  options = options || {}
+  options = options || {};
   options.exclude = options.exclude || [];
 
   var directoryObj = options.objectToModify || {};
@@ -16,6 +17,12 @@ module.exports = (req, options) => {
 
   req.keys().forEach((key) => {
     var module = req(key);
+
+    // Babel hack, required to get ES5 and ES6 to place nice together
+    // by extracting the module from .default per Babel 6 behavior
+    if(module.default && module.__esModule) {
+      module = module.default;
+    }
 
     // If the module is in the exclude list, skip doing anything with it
     if(options.exclude.indexOf(key) >= 0) {
