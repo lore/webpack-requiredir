@@ -1,6 +1,6 @@
 {
   "name": "webpack-requiredir",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Recursively requires modules from a webpack require context",
   "license": "MIT",
   "main": "lib/index.js",
