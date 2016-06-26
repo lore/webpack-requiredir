@@ -1,20 +1,22 @@
 {
   "name": "webpack-requiredir",
   "version": "0.2.0",
-  "description": ".",
-  "homepage": "http://github.com/storcery/webpack-requiredir",
+  "description": "Recursively requires modules from a webpack require context",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "homepage": "http://github.com/lore/webpack-requiredir",
   "keywords": [
-    "lore",
     "webpack",
     "require",
     "dir"
   ],
-  "author": "Storcery.io, LLC",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "src"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lore/webpack-requiredir.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lore/webpack-requiredir/issues"
+  },
   "scripts": {
     "clean": "rimraf lib coverage .tmp",
     "lint": "eslint src test",
@@ -27,13 +29,6 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublish": "npm run clean && npm run build"
-  },
-  "engines": {
-    "node": ">=0.9.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/storcery/webpack-requiredir.git"
   },
   "dependencies": {},
   "devDependencies": {
@@ -52,15 +47,5 @@
     "mocha-loader": "^0.7.1",
     "rimraf": "^2.4.4",
     "webpack": "^1.12.9"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/storcery/webpack-requiredir/raw/master/LICENSE"
-    }
-  ],
-  "bugs": {
-    "url": "https://github.com/storcery/webpack-requiredir/issues"
-  },
-  "license": "MIT"
+  }
 }
